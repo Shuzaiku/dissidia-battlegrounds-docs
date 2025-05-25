@@ -1,8 +1,103 @@
-site_name: MkLorum
+site_name: Dissidia Battlegrounds
 
 nav:
-  - Home : index.md
-  - About : about.md
-  - Credits : english.md
+  - Introduction: index.md
+  - Creating Movesets: nav/create-moveset.md
+  - Mechanics:
+    - About: nav/mechanics/index.md
+    - Focus: nav/mechanics/focus.md
+    - Damage: nav/mechanics/damage.md
+    - Stun: nav/mechanics/stun.md
+    - Ragdoll: nav/mechanics/ragdoll.md
+    - Knockback: nav/mechanics/knockback.md
+    - Pushback: nav/mechanics/pushback.md
+    - Launch: nav/mechanics/launch.md
+    - Guard: nav/mechanics/guard.md
+    - Invincibility Frames: nav/mechanics/iframes.md
+    - Air Combo: nav/mechanics/air-combo.md
+    - Link Character: nav/mechanics/follow-character.md
+    - Combo Yielding: nav/mechanics/combo-yielding.md
+    - Animation Cancelling: nav/mechanics/anim-cancel.md
+  - PathInterpreter:
+    - About: nav/path-interpreter/index.md
+    - API: nav/path-interpreter/api.md
+  - HitboxClass:
+    - About: nav/hitbox-class/index.md
+    - API: nav/hitbox-class/api.md
+  - Data Stores:
+    - About: nav/data-stores/index.md
+    - GDPR Compliance: nav/data-stores/gdpr.md
+  - Tags: nav/collection-service.md
 
-theme: readthedocs
+theme:
+  name: material
+  favicon: img/favicon.ico
+  logo: img/favicon.ico
+  features:
+    # Code features
+    - content.code.copy
+    - content.code.select
+    # Search features
+    - search.suggest
+    - search.highlight
+    - search.share
+    # Tooltips
+    - content.tooltips
+  highlightjs: true
+  hljs-languages:
+    - lua
+  palette:
+    # System default
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+markdown_extensions:
+  # Admonitions
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  # Annotations
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
+  # Footnotes
+  - footnotes
+  # Images
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+  # Tables
+  - tables
+  # Tooltips
+  - abbr
+  - attr_list
+  - pymdownx.snippets
+
+plugins:
+  - glightbox
+  - search
+
+extra_javascript:
+  - javascripts/tags.js
+  - javascripts/classNames.js
