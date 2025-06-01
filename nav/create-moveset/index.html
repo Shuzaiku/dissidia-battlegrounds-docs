@@ -395,6 +395,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#default-animation-overrides-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default animation overrides (optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#creating-accessories-optional" class="md-nav__link">
     <span class="md-ellipsis">
       Creating accessories (optional)
@@ -1253,6 +1262,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#default-animation-overrides-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default animation overrides (optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#creating-accessories-optional" class="md-nav__link">
     <span class="md-ellipsis">
       Creating accessories (optional)
@@ -1496,7 +1514,6 @@
 <p><a class="glightbox" href="../../img/moveset-guide-15.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Hit effect folders" src="../../img/moveset-guide-15.png" /></a></p>
 <h2 id="creating-base-animations">Creating base animations</h2>
 <p>All the basic animations required for the role are located within <code>&lt;RoleFolder&gt;/Animations</code>, the automation system will take care of assigning them their proper places, so all you have to do is assign the animation id to these.</p>
-<p>To create a custom run animation when a weapon is equipped, create a <code>StringValue</code> called 'weaponrun' in <code>&lt;RoleFolder&gt;/Animations</code> and set its <code>Path</code> attribute to <code>{ character }.Animate</code>, then all you have to do is parent any animation you'd like to <code>weaponrun</code>.</p>
 <p><a class="glightbox" href="../../img/moveset-guide-16.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Basic animations" src="../../img/moveset-guide-16.png" /></a></p>
 <details class="info" open="open">
 <summary>Info</summary>
@@ -1519,6 +1536,51 @@
 <li>20-35 frames punish</li>
 </ul>
 </details>
+<h2 id="default-animation-overrides-optional">Default animation overrides (optional)</h2>
+<p>Each role has the option to override any of the default animations within <code>&lt;Player&gt;/Character/Animate</code>.</p>
+<p><a class="glightbox" href="../../img/animate-values.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Animate values" src="../../img/animate-values.png" /></a></p>
+<p>To override them, go to <code>&lt;RoleFolder&gt;/Animations</code> and create a <a href="https://create.roblox.com/docs/reference/engine/classes/StringValue">StringValue</a> with the same name and the following attributes:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path</td>
+<td>string</td>
+<td>{ character }.Animate</td>
+</tr>
+<tr>
+<td>Replace</td>
+<td>boolean</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>The <a href="https://create.roblox.com/docs/reference/engine/classes/StringValue">StringValue</a> must have an <a href="https://create.roblox.com/docs/reference/engine/classes/Animation">Animation</a> parented to it, additionally, you can set a custom speed animation value by assigning the following attribute:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Speed</td>
+<td>number</td>
+</tr>
+</tbody>
+</table>
+<p>On top of this, the same steps can be followed (except for assigning a <code>Replace</code> attribute) to create a custom run animation when a weapon is equipped, by naming the <a href="https://create.roblox.com/docs/reference/engine/classes/StringValue">StringValue</a> <code>weaponrun</code>.</p>
+<details class="example" open="open">
+<summary>Example</summary>
+<p><a class="glightbox" href="../../img/default-animation-overrides.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Default animation overrides" src="../../img/default-animation-overrides.png" /></a></p>
+</details>
 <h2 id="creating-accessories-optional">Creating accessories (optional)</h2>
 <details class="tip" open="open">
 <summary>Tip</summary>
@@ -1539,7 +1601,7 @@
 </details>
 <p>Now just drag the accessory out of the model and place it inside <code>&lt;RoleFolder&gt;/Accessories</code>.</p>
 <p><a class="glightbox" href="../../img/moveset-guide-17.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Accessory placed in accessory folder" src="../../img/moveset-guide-17.png" /></a></p>
-<p>Finally, you'll have to set the accessory's <em>Path</em> attribute to <code>{ character }</code>. This will allow the <a href="../path-interpreter/">PathInterpreter</a> module to parent the attribute to the character when they spawn.</p>
+<p>Finally, you'll have to set the accessory's <em>Path</em> attribute to <code>{ character }</code>. This will allow the <a href="../path-interpreter/">PathInterpreter</a> module to parent the accessory to the character when they spawn.</p>
 <p><a class="glightbox" href="../../img/moveset-guide-18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Setting the parent path" src="../../img/moveset-guide-18.png" /></a></p>
 <h2 id="guard-effects">Guard effects</h2>
 <p>There are two types of guard effects for guarding: default and parry. Both of these shall have unique sound and visual effects.</p>
@@ -1730,7 +1792,7 @@ However, this name won't do. Summon functions are index based on the <a href="./
 <span class="p">}</span>
 </code></pre></div></p>
 <h2 id="awakening-effects">Awakening effects</h2>
-<p>When a character triggeres an awakening, you usually expect some sort of flashy visual and sounds effects to play.</p>
+<p>When a character triggeres an awakening, you usually expect some sort of flashy visual and sound effects to play.</p>
 <h3 id="server-side-effects">Server-side effects</h3>
 <p>The server-side awakening scripts can be found in <code>ServerScriptService/AwakenServer/Modules</code>, make a new one and rename it to the <a href="./#create-a-role-folder">Role's</a> name.</p>
 <p><a class="glightbox" href="../../img/moveset-guide-26.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="VFX Modules" src="../../img/moveset-guide-26.png" /></a></p>
@@ -1747,8 +1809,8 @@ However, this name won't do. Summon functions are index based on the <a href="./
 <span class="nv">Cloud</span><span class="p">.</span><span class="py">Awaken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="nv">player</span><span class="p">:</span><span class="w"> </span><span class="py">Player</span><span class="p">,</span><span class="w"> </span><span class="nv">character</span><span class="p">:</span><span class="w"> </span><span class="py">Model</span><span class="p">)</span>
 <span class="w">    </span><span class="c1">-- This function is called on server when the player awakens</span>
 
-<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">extraParams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;param1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;param2&quot;</span><span class="p">}</span>
-<span class="w">    </span><span class="nv">awakenVFXEvent</span><span class="p">:</span><span class="nf">FireAllClients</span><span class="p">(</span><span class="nv">character</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cloud&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">extraParams</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">extraParams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nv">character</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;param2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;param3&quot;</span><span class="p">}</span>
+<span class="w">    </span><span class="nv">awakenVFXEvent</span><span class="p">:</span><span class="nf">FireAllClients</span><span class="p">(</span><span class="s2">&quot;Cloud&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">extraParams</span><span class="p">)</span>
 <span class="kr">end</span>
 
 <span class="kr">return</span><span class="w"> </span><span class="nv">Cloud</span>
