@@ -27,6 +27,11 @@ This site documents the structure and tools of the Roblox video game [Dissidia B
         PersistentGuiNoInset    # A ScreenGui that does not reset on spawn and ignores GUI inset.
         ScreenGui               # A default ScreenGui.
         ScreenGuiNoInset        # A default ScreenGui that ignores GUI inset.
-    { .annotate }
 
 \*  -   Do not change change this Instance.
+
+## Place links
+- [Main](https://www.roblox.com/games/15352179962/Dissidia-Battlegrounds)
+- [Ranked Lobby](https://www.roblox.com/games/17232656581/Ranked-Lobby)
+- [The Struggle](https://www.roblox.com/games/17277500706/The-Struggle)
+- [Testing](https://www.roblox.com/games/17383720881/Testing)

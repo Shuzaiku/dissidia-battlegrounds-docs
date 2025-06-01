@@ -97,8 +97,6 @@ There are two types of hit effects for each weapon, a normal hit effect and a cr
 ## Creating base animations
 All the basic animations required for the role are located within `<RoleFolder>/Animations`, the automation system will take care of assigning them their proper places, so all you have to do is assign the animation id to these.
 
-To create a custom run animation when a weapon is equipped, create a `StringValue` called 'weaponrun' in `<RoleFolder>/Animations` and set its `Path` attribute to `{ character }.Animate`, then all you have to do is parent any animation you'd like to `weaponrun`.
-
 ![Basic animations](../img/moveset-guide-16.png)
 
 ???+ info
@@ -120,6 +118,30 @@ To create a custom run animation when a weapon is equipped, create a `StringValu
     - 0-15 frames windup
     - 15-20 frames attack
     - 20-35 frames punish
+
+## Default animation overrides (optional)
+Each role has the option to override any of the default animations within `<Player>/Character/Animate`.
+
+![Animate values](../img/animate-values.png)
+
+To override them, go to `<RoleFolder>/Animations` and create a [StringValue](https://create.roblox.com/docs/reference/engine/classes/StringValue) with the same name and the following attributes:
+
+| Attribute | Type    | Value                 |
+| --------- | ------- | --------------------- |
+| Path      | string  | { character }.Animate |
+| Replace   | boolean | true                  |
+
+The [StringValue](https://create.roblox.com/docs/reference/engine/classes/StringValue) must have an [Animation](https://create.roblox.com/docs/reference/engine/classes/Animation) parented to it, additionally, you can set a custom speed animation value by assigning the following attribute:
+
+| Attribute | Type    |
+| --------- | ------- |
+| Speed     | number  | 
+
+On top of this, the same steps can be followed (except for assigning a `Replace` attribute) to create a custom run animation when a weapon is equipped, by naming the [StringValue](https://create.roblox.com/docs/reference/engine/classes/StringValue) `weaponrun`.
+
+???+ example
+
+    ![Default animation overrides](../img/default-animation-overrides.png)
 
 ## Creating accessories (optional)
 ???+ tip
@@ -144,7 +166,7 @@ Now just drag the accessory out of the model and place it inside `<RoleFolder>/A
 
 ![Accessory placed in accessory folder](../img/moveset-guide-17.png)
 
-Finally, you'll have to set the accessory's *Path* attribute to `{ character }`. This will allow the [PathInterpreter](path-interpreter/index.md) module to parent the attribute to the character when they spawn.
+Finally, you'll have to set the accessory's *Path* attribute to `{ character }`. This will allow the [PathInterpreter](path-interpreter/index.md) module to parent the accessory to the character when they spawn.
 
 ![Setting the parent path](../img/moveset-guide-18.png)
 
@@ -333,7 +355,7 @@ local summonMetatable = {
 ```
 
 ## Awakening effects
-When a character triggeres an awakening, you usually expect some sort of flashy visual and sounds effects to play.
+When a character triggeres an awakening, you usually expect some sort of flashy visual and sound effects to play.
 
 ### Server-side effects
 The server-side awakening scripts can be found in `ServerScriptService/AwakenServer/Modules`, make a new one and rename it to the [Role's](create-moveset.md/#create-a-role-folder) name.
@@ -354,8 +376,8 @@ local Cloud = {}
 Cloud.Awaken = function(player: Player, character: Model)
     -- This function is called on server when the player awakens
     
-    local extraParams = {"param1", "param2"}
-    awakenVFXEvent:FireAllClients(character, "Cloud", extraParams)
+    local extraParams = {character, "param2", "param3"}
+    awakenVFXEvent:FireAllClients("Cloud", extraParams)
 end
 
 return Cloud

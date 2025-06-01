@@ -101,5 +101,19 @@ Stun can be manually cancelled through `ServerUtils.ridStagger()`. Not to be con
 ServerUtils.ridStagger(character)
 ```
 
+??? example
+
+    This is what the method looks like from the inside.
+
+    ```lua
+    function ServerUtils.ridStagger(character: Model)
+        local status = character.Status
+        
+        status:SetAttribute("StunTime", 0)
+        status:SetAttribute("CanAttack", true)
+        status:SetAttribute("IsStunned", false)
+    end
+    ```
+
 #### Coroutine
 The [coroutine](https://create.roblox.com/docs/reference/engine/libraries/coroutine) returned by `ServerUtils.stun()` contains a method which cancels the stun at the end of its duration. Cancelling this [coroutine](https://create.roblox.com/docs/reference/engine/libraries/coroutine) will result in the stun being endless. This is helpful for very specific scenarios.
